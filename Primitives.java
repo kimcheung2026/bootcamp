@@ -38,7 +38,24 @@ public static void main(String[] args) {
   double d1 = 100.99;
   float f1 = 100.99f;
   long l20 = 200L;
+
+  // +, - 
+  char c10 ='a';
+
+  System.out.println('a'+ 1); //98
+
+  // ! char + int -> int
+  //! assign 98 into c11
+  char c11 = 'a'+1;
+  System.out.println(c11);
    
-  
+  char c12 = 'a' +25;
+  System.out.println(c12);
+
+  char ch1 ='a';
+  char ch2 ='b';
+  if(ch2>ch1){
+    System.out.println("ch2 ascii > ch1 ascii");
+  }
   }
 }

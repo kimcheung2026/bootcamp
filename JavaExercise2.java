@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
     /**
  * Expected Output:
  * 
@@ -25,8 +23,7 @@ public class JavaExercise2 {
         }
 
         // ==================== Question 2: String length ====================
-        String str = "I love Java. I love coding";
-        
+        String str = "I love Java. I love coding. ";
         if ( str.length() == 27/* 填條件：str 長度等於 27 */) {
             System.out.println("str length = 27");
         } else if (str.length() <27/* 填條件：str 長度細過 27 */) {
@@ -53,9 +50,9 @@ public class JavaExercise2 {
         // ==================== Question 4: String equals ====================
         String language = "Java";
 
-        if (language == "Java"/* 填條件：language 係 "Java" */) {
+        if ( "Java".equals(language)/* 填條件：language 係 "Java" */) {
             System.out.println("We are learning the best programming language!");
-        } else if (language == "Python"/* 填條件：language 係 "Python" */) {
+        } else if ( "Python".equals(language)/* 填條件：language 係 "Python" */) {
             System.out.println("Python is also very popular.");
         } else {
             System.out.println("Other programming language.");

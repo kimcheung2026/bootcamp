@@ -30,7 +30,7 @@ public class JavaExercise1 {
     // Add two numbers and print it out
     // code here ...
     System.out.println("The sum is " + sum);
-    int subtract = first - second;
+    int subtract =  second - first ;
     // subtraction
     // code here with tips, pls fix ...
     // subtract = first - second
@@ -41,8 +41,9 @@ public class JavaExercise1 {
     byte b2 = 70;
     // code here with tips, pls fix ...
     // sum = b1 + b2;
-    int sum1 = b1 + b2;
-    System.out.println("The another sum reuslt is " + sum1);
+    //int sum1 = b1 + b2;
+    sum = b1 + b2;
+    System.out.println("The another sum reuslt is " + sum);
     boolean varB = false;
     boolean varC = true;
     // declare two boolean variable with true and false value
