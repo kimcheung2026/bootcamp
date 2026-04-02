@@ -71,7 +71,7 @@ public class DemoString {
     System.out.println(s14.indexOf('o')); //1
     System.out.println(s14.indexOf("camp"));//4
     System.out.println(s14.indexOf("java")); // -1
-    System.out.println(s14.indexOf(97));
+    System.out.println(s14.indexOf(97)); //5
 
     //12. lastIndexOf
     System.out.println(s14.lastIndexOf('o')); //2

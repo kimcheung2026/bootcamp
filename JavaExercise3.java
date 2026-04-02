@@ -4,7 +4,7 @@ public class JavaExercise3 {
     // 1. Vowel (a, e, i, o, u – both lowercase and uppercase)
     // 2. Consonant (anothor 21 letters)
     // 3. Not an alphabet
-    char ch = 'i';
+    char ch = 'A';
     String vowel = "aeiouAEIOU";
     if ( vowel.indexOf(ch) != -1) {
         System.out.println(" It is Vowel.");
