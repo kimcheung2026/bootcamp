@@ -1,0 +1,13 @@
+public class DemoClassObject {
+  public static void main (String[] args) {
+    //Array for data
+    // Disadvantages -> read data from development perspective
+    // Have to remember array location for special data
+
+    //Object-oriented Programming
+    Tutor t1 = new Tutor(); // Produce Tutor Object
+    t1.setEmailAddress("sallychan@gmail.com");
+    system.out.println(t1.getEmailAddress());
+
+  }
+}

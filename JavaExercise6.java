@@ -9,6 +9,7 @@ public class JavaExercise6 {
     String st2 = "";
     String st3 = "";
     int count = 10;
+    int count1 = 0;
     for (int i = 0; i < 100; i++) {
       // code here ...
       if ( i % 2 != 1) {
@@ -24,8 +25,9 @@ public class JavaExercise6 {
         st3 += i + " ";
         }
       } 
+      count1++;
     }   
-    System.out.println(st1);
+    System.out.println("1.Even number within "+ count1 + " are " + st1);
     System.out.println(st2);
     System.out.println(st3);
   }

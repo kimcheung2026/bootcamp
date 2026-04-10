@@ -1,0 +1,88 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Customer",
+      "request": "launch",
+      "mainClass": "Customer",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoDate",
+      "request": "launch",
+      "mainClass": "DemoDate",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoBigDecimal",
+      "request": "launch",
+      "mainClass": "DemoBigDecimal",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoMath",
+      "request": "launch",
+      "mainClass": "DemoMath",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoWrapperClass",
+      "request": "launch",
+      "mainClass": "DemoWrapperClass",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoStringII",
+      "request": "launch",
+      "mainClass": "DemoStringII",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoArray",
+      "request": "launch",
+      "mainClass": "DemoArray",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "JavaExercise6",
+      "request": "launch",
+      "mainClass": "JavaExercise6",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "DemoScanner",
+      "request": "launch",
+      "mainClass": "DemoScanner",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-DatingappApplication<datingapp>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "datingapp.DatingappApplication",
+      "projectName": "datingapp",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-DatingappApplication<datingapp>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.project.datingapp.DatingappApplication",
+      "projectName": "datingapp",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60889 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=datingapp"
+    }
+  ]
+}
