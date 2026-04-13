@@ -2,6 +2,153 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.project.datingapp.group.Main",
+      "projectName": "datingapp"
+    },
+    {
+      "type": "java",
+      "name": "GroupAuthService",
+      "request": "launch",
+      "mainClass": "com.project.datingapp.group.GroupAuthService",
+      "projectName": "datingapp"
+    },
+    {
+      "type": "java",
+      "name": "GroupAuthService",
+      "request": "launch",
+      "mainClass": "com.project.datingapp.GroupAuthService.GroupAuthService",
+      "projectName": "datingapp"
+    },
+    {
+      "type": "java",
+      "name": "DemoMath",
+      "request": "launch",
+      "mainClass": "DemoMath",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Cardrule",
+      "request": "launch",
+      "mainClass": "Cardrule",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Deck",
+      "request": "launch",
+      "mainClass": "Deck",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Order",
+      "request": "launch",
+      "mainClass": "Order",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Circle",
+      "request": "launch",
+      "mainClass": "Circle",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Card1",
+      "request": "launch",
+      "mainClass": "Card1",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "DemoEnum",
+      "request": "launch",
+      "mainClass": "DemoEnum",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Person",
+      "request": "launch",
+      "mainClass": "Person",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Week2Revision",
+      "request": "launch",
+      "mainClass": "demo.Week2Revision",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Customer",
+      "request": "launch",
+      "mainClass": "Customer",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Car",
+      "request": "launch",
+      "mainClass": "Car",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Card",
+      "request": "launch",
+      "mainClass": "Card",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Direction",
+      "request": "launch",
+      "mainClass": "Direction",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Tiger",
+      "request": "launch",
+      "mainClass": "Tiger",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "String1",
+      "request": "launch",
+      "mainClass": "String1",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "DemoArray",
+      "request": "launch",
+      "mainClass": "DemoArray",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "DemoASCII",
+      "request": "launch",
+      "mainClass": "DemoASCII",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
+      "name": "JavaExercise7",
+      "request": "launch",
+      "mainClass": "JavaExercise7",
+      "projectName": "bootcamp_95f569ec"
+    },
+    {
+      "type": "java",
       "name": "Customer",
       "request": "launch",
       "mainClass": "Customer",
