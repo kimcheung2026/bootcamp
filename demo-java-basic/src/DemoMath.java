@@ -1,7 +1,19 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class DemoMath {
+
+  public static boolean isDuplicated(int[] arr, int newNumber) { // input
+    for (int i = 0; i < arr.length; i++) {
+      if(arr[i] == newNumber) {
+        return true;
+      }
+    }
+    return false;
+  }
   public static void main (String[] args) {
     //! PI
     double pi = Math.PI;
@@ -84,9 +96,48 @@ public class DemoMath {
         System.out.println("不重复的6个号码：");
         for (int j = 0; j < markSix1 ;j++) {
             System.out.print(list.get(j) + " ");
+            }
+
+
+        //Assignment
+        //1-49 random
+        //output: int[] -> 6 numbers (marksix) (no Duplicate)
+       int[] answers = new int[6];
+       int idx =0;
+       //! White Loop handles uncertain timing for end loop
+       while (idx <= 5) {
+       // for (int i =0; i < answers.length; i++) {
+        // ! Get a number
+        int num = new Random().nextInt(49) + 1;
+        // ! check if duplicated
+       //1 boolean found = false;
+       //1 for (int j =0; j <= idx; j++) {
+       //1   if (answers[j] == num) {
+       //1     found = true;
+       //1     break;
+       //1   }
+       //1   if (found) {
+       //1     continue; // ! skip the rest , go to the next iteration
+       if (isDuplicated(answers, num)) {
+       continue;
+       } else {
+            //! place num to answers
+            answers[idx++] = num; //0-5
+          }
+        
+      
+       //
+       
+       System.out.println(Arrays.toString(answers));
+       Arrays.sort(answers) ;
+       System.out.println(Arrays.toString(answers));
+
+      }
+
+        //int num = new randam().next(49)+1; //0-48 +1 // new radom tool
+        //System.out.println(num);   
         }
 
     
     
   }
-}

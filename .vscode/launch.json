@@ -2,6 +2,48 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Triangle",
+      "request": "launch",
+      "mainClass": "Triangle",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Shape",
+      "request": "launch",
+      "mainClass": "Shape",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Superman",
+      "request": "launch",
+      "mainClass": "Superman",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Cat",
+      "request": "launch",
+      "mainClass": "Cat",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Dog",
+      "request": "launch",
+      "mainClass": "Dog",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "DemoMethod",
+      "request": "launch",
+      "mainClass": "DemoMethod",
+      "projectName": ""
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "com.project.datingapp.group.Main",
