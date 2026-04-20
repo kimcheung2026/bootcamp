@@ -9,7 +9,7 @@ public class Triangle extends Shape {
     super();
     
   }
-  public Triangle(Color color, double length, double height) {
+  public Triangle(Color color, double length, double height) { // this structure with parent Color  for presentation
     super(color);
     this.length = length;
     this.height = height;

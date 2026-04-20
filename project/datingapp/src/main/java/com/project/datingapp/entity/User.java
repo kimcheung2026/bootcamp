@@ -1,15 +1,22 @@
 package com.project.datingapp.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Comment;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+
+import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +24,14 @@ import java.time.Period;
 @Entity
 @Table(name = "users")
 public class User {
+
+    @Transient // 告訴 Hibernate 這裡不需要對應資料庫欄位
+    public int getAge() {
+        if (this.birthday == null) {
+            return 0;
+        }
+        return Period.between(this.birthday, LocalDate.now()).getYears();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,19 +79,19 @@ public class User {
     @Comment("創建時間，自动生成")
     private LocalDateTime createTime;
 
-
     public void setEmail(String email) {
-    this.email = email;
+        this.email = email;
     }
-    public String getEmail() { //String -> return Type
-    return this.email;
+
+    public String getEmail() { // String -> return Type
+        return this.email;
     }
     // 设置生日
-    //user.setBirthday(LocalDate.of(2000, 5, 20));
+    // user.setBirthday(LocalDate.of(2000, 5, 20));
 
     // 获取生日
-    //LocalDate birthday = user.getBirthday();
+    // LocalDate birthday = user.getBirthday();
 
     // 自动计算年龄（Java自带）
-    //int age = Period.between(birthday, LocalDate.now()).getYears();
+    // int age = Period.between(birthday, LocalDate.now()).getYears();
 }

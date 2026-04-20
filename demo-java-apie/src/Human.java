@@ -1,8 +1,12 @@
+import java.util.Random;
+
+import java.util.Random;
+
 public abstract class Human {
   private String name;
 
   public Human() {
-
+  
   }
 
   public Human(String name) {
@@ -15,3 +19,4 @@ public abstract class Human {
     this.name = name;
   }
 }
+

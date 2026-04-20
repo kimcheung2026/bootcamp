@@ -2,6 +2,74 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Warrior3",
+      "request": "launch",
+      "mainClass": "Warrior3"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "App"
+    },
+    {
+      "type": "java",
+      "name": "DemoArrayList",
+      "request": "launch",
+      "mainClass": "DemoArrayList",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Warrior",
+      "request": "launch",
+      "mainClass": "project.hero/project.hero.Warrior",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "DemoObject",
+      "request": "launch",
+      "mainClass": "DemoObject",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "JavaExercise1",
+      "request": "launch",
+      "mainClass": "JavaExercise1",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Mage",
+      "request": "launch",
+      "mainClass": "Mage",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Warrior",
+      "request": "launch",
+      "mainClass": "Warrior",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Human",
+      "request": "launch",
+      "mainClass": "Human",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Bird",
+      "request": "launch",
+      "mainClass": "Bird",
+      "projectName": ""
+    },
+    {
+      "type": "java",
       "name": "Triangle",
       "request": "launch",
       "mainClass": "Triangle",

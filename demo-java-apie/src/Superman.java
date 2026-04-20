@@ -13,7 +13,11 @@ public class Superman extends Human implements Flyable, Swimable { //Step 1 --> 
     this.hp = 100;
     this.baseAttack = 5; // 每個超人基本 5 點
   }
-  
+   public Superman (String name) {
+    super(name);
+    this.hp = 100;
+    this.baseAttack = 5; // 每個超人基本 5 點
+  }
 
 //總結建議：
 //如果是「每次攻擊都不一樣」 
@@ -48,6 +52,17 @@ public class Superman extends Human implements Flyable, Swimable { //Step 1 --> 
 
 
   // Instance Method (Skill -> Contract)
+  public void checkCreature(Flyable [] flys) {
+    if ( flys instanceof Bird b) { // 檢查的同時直接宣告變數 b
+        System.out.println("這是一隻鳥，編號是：" + b.getCode());
+    } else if (flys instanceof Superman s) {
+        System.out.println("超人名字是：" + s.getName());
+    }
+  }
+
+
+
+
   @Override // Step 3 
   public void fly() {
     System.out.println("Superman " + this.getName() + " is flying...");
@@ -105,6 +120,36 @@ public class Superman extends Human implements Flyable, Swimable { //Step 1 --> 
     System.out.println(h1.getName());
     //! Compile time. h1 can call Parent Class Method ONLY
     //! Runtime, h1 will know it points to Superman object
+       Bird b1 = new Bird();
+    Bird b2 = new Bird();
+    System.out.println(b1.equals(b2)); //false (b1 == b2) After override true
+    
+    Bird b3 = new Bird("John", 101);
+    Bird b4 = new Bird("John", 102);
+    System.out.println(b3.equals(b4));
+
+    Bird b5 = new Bird("Mary", 101);
+    Bird b6 = new Bird("Sally", 101);
+    System.out.println(b5.equals(b5)); 
+    //
+   Flyable f = new Bird("Leo");
+   f.fly(); //runtime -> fly() method content
+   //Superman is flying
+   //f.swin()
+   Flyable[] flys = new Flyable[] {new Bird("Nacy", 101), new Bird("Peter",808), new Superman("Susan"), new Superman("Hugo") };
+   Flyable[] birdRegistry = new Flyable[] { b1, b2, b3, b4, b5, b6,};
+
+   //for (int i = 0 ; i < flys.length; i++) {
+   //flys[i].fly();
+   // }
+   for (Flyable all : flys){ // same meanning on line 132 -134
+    all.fly();
+   }
+   for (Bird all : Bird.birdRegistry){
+    all.fly();
+   }
+   
+
   }
    
 }
