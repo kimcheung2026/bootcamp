@@ -1,8 +1,10 @@
 package com.project.datingapp.dto;
 
-import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDate;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Data;
 
 @Data
 public class UserRegisterDTO {

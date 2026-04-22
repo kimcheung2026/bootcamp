@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>登入</title>
+</head>
+<body>
+    <h2>系統登入</h2>
+    
+    <!-- 登入失敗訊息 -->
+    <div th:if="${param.error}" style="color: red;">
+        帳號或密碼錯誤
+    </div>
+    
+    <!-- 登出成功訊息 -->
+    <div th:if="${param.logout}" style="color: green;">
+        您已成功登出
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>帳號:</label>
+            <input type="text" name="username" required/>
+        </div>
+        <div>
+            <label>密碼:</label>
+            <input type="password" name="password" required/>
+        </div>
+        <button type="submit">登入</button>
+    </form>
+    
+    <p>還沒有帳號？ <a href="/register">立即註冊</a></p>
+</body>
+</html>

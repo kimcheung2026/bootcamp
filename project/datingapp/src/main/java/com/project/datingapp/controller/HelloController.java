@@ -6,38 +6,35 @@ import java.util.UUID;
 
 import com.project.datingapp.dto.UserRegisterDTO;
 import com.project.datingapp.entity.User;
-import com.project.datingapp.repository.UserRepository;
+import com.project.datingapp.exception.UserServiceException;
+import com.project.datingapp.service.UserService; // 必須引入 Service
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller; // 改用 @Controller
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes; // 必須引入
 
-@Controller // 注意：若要跳轉頁面，不能用 @RestController
+@Controller
 public class HelloController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService; // 改為注入 Service，不要直接用 Repository
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    // 顯示註冊頁面 (回傳 register.html)
     @GetMapping("/register")
     public String showRegisterPage() {
         return "register";
     }
 
-    // 使用者註冊邏輯
     @PostMapping("/user/register")
-    public String register(@ModelAttribute UserRegisterDTO dto) {
+    public String register(@ModelAttribute UserRegisterDTO dto, RedirectAttributes redirectAttributes) { // 1. 補上
+                                                                                                         // RedirectAttributes
         try {
             User user = new User();
             user.setUsername(dto.getUsername());
-            user.setPassword(passwordEncoder.encode(dto.getPassword()));
+            user.setPassword(dto.getPassword()); // 傳明文給 Service，讓 Service 加密
             user.setNickname(dto.getNickname());
             user.setGender(dto.getGender());
             user.setBirthday(dto.getBirthday());
@@ -45,33 +42,42 @@ public class HelloController {
             user.setPhone(dto.getPhone());
             user.setIntro(dto.getIntro());
 
-            // 頭像存儲邏輯 (範例：存到本地專案目錄)
+            // 處理頭像
             MultipartFile file = dto.getAvatarFile();
             if (file != null && !file.isEmpty()) {
-                // 使用 UUID 避免檔名重複
                 String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
                 String uploadDir = System.getProperty("user.dir") + "/uploads/";
-
                 File dest = new File(uploadDir + fileName);
                 if (!dest.getParentFile().exists())
                     dest.getParentFile().mkdirs();
-
-                file.transferTo(dest); // 實際存檔
+                file.transferTo(dest);
                 user.setAvatar("/uploads/" + fileName);
             }
 
-            userRepository.save(user);
-            return "redirect:/home"; // 註冊成功後導向首頁
+            // 2. 呼叫 Service 執行註冊 (包含檢查與加密)
+            userService.registerUser(user);
 
+            return "redirect:/login";
+
+        } catch (UserServiceException e) {
+            // 3. 這裡現在能正確運作了
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/register";
         } catch (IOException e) {
-            e.printStackTrace();
-            return "error";
+            redirectAttributes.addFlashAttribute("errorMessage", "檔案上傳失敗");
+            return "redirect:/register";
         }
     }
 
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
+    }
+
+    // 注意：Thymeleaf 回傳的是 HTML 檔名，不要用中文字
     @GetMapping("/home")
     public String home() {
-        return "系統首頁";
+        return "home"; // 對應 home.html
     }
 
     @GetMapping("/interestClass")

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>系統首頁 - Dating App</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 0; margin: 0; background-color: #f4f7f6; }
+        .navbar { background: #333; color: #fff; padding: 1rem; display: flex; justify-content: space-between; }
+        .navbar a { color: #fff; text-decoration: none; margin-left: 15px; }
+        .container { padding: 2rem; max-width: 1000px; margin: auto; text-align: center; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn { display: inline-block; background: #ff4d4d; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">Dating App <span>💖</span></div>
+        <div class="menu">
+            <span sec:authorize="isAuthenticated()">
+                歡迎, <span sec:authentication="name">User</span>
+                <a href="/logout">登出</a>
+            </span>
+            <span sec:authorize="isAnonymous()">
+                <a href="/login">登入</a>
+                <a href="/register">註冊</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>探索您的專屬社交生活</h1>
+        <p>根據您的身份，您可以存取以下功能：</p>
+
+        <div class="card-grid">
+            <!-- 只有普通用戶看得到 ROLE_USER -->
+            <div class="card" sec:authorize="hasRole('USER')">
+                <h3>隨機配對</h3>
+                <p>開啟盲盒，遇見心儀的另一半。</p>
+                <a href="/blindBoxOpen" class="btn">立即開啟</a>
+            </div>
+
+            <!-- 只有商家看得到 ROLE_MERCHANT -->
+            <div class="card" sec:authorize="hasRole('MERCHANT')">
+                <h3>興趣班管理</h3>
+                <p>發佈並管理您的興趣班課程。</p>
+                <a href="/interestClass" class="btn" style="background: #007bff;">管理課程</a>
+            </div>
+
+            <!-- 只有管理員看得到 ROLE_ADMIN -->
+            <div class="card" sec:authorize="hasRole('ADMIN')">
+                <h3>會員管理</h3>
+                <p>審核商家與用戶權限。</p>
+                <a href="/members" class="btn" style="background: #28a745;">進入後台</a>
+            </div>
+            
+            <!-- 報名記錄 (通用功能) -->
+            <div class="card" sec:authorize="isAuthenticated()">
+                <h3>個人記錄</h3>
+                <p>查看您的活動報名狀態。</p>
+                <a href="/classEnrollment" class="btn" style="background: #6c757d;">查看紀錄</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

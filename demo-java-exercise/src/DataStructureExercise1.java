@@ -168,7 +168,7 @@ public class DataStructureExercise1 {
     HashSet<Student1> set6 = new HashSet<>(Set.of(new Student1("Bob", 2), new Student1("Charlie", 3//
     ), new Student1("David", 4)));
     HashSet<Student1> commonSet1 = new HashSet<>(set5);
-    commonSet1.retainAll(set6); // 交集方法
+    commonSet1.retainAll(set6); // 交集方法 crossover
     for (Student1 s : commonSet1) {
       System.out.println(s.toString1());
     }

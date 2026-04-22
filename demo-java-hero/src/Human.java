@@ -70,6 +70,8 @@ public abstract class Human {
     }
   }
 
+  public abstract void action(Human target);
+
   public void attack(Human human) {
     int finalDamage = this.baseAttack + (random.nextInt(5) - 2);
     if (this.isAlive()) {

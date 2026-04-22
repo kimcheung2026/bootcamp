@@ -1,15 +1,16 @@
+
 import java.util.Random;
 
-public class Warrior3 extends Human implements Wskill3, Sword3, Levelup {
+public class Mage extends Human implements Mskill, Stave, Levelup {
   private int newAtt;
   private int newHp;
   private int newMp;
 
-  public Warrior3(String name) {
+  public Mage(String name) {
     super(name);
     this.newAtt = super.getBaseAttack() + 5;
-    this.newHp = super.getHp() + 100;
-    this.newMp = super.getMp() + 20;
+    this.newHp = super.getHp() + 50;
+    this.newMp = super.getMp() + 100;
     super.setHp(this.newHp);
     super.setMp(this.newMp);
     super.setAtt(this.newAtt);
@@ -34,12 +35,11 @@ public class Warrior3 extends Human implements Wskill3, Sword3, Levelup {
 
   }
 
-  @Override
   public void levelup() { // Warrior level
     this.addAtt(5);
-    this.addMp(20);
-    this.addHp(100);
-    System.out.println(this.getName() + " 等級提升了！ ");
+    this.addMp(100);
+    this.addHp(50);
+    System.out.println(this.getName() + " (法師)等級提升了！ ");
   }
 
   @Override
@@ -47,7 +47,7 @@ public class Warrior3 extends Human implements Wskill3, Sword3, Levelup {
     if (this.getMp() >= 10) {
       int damage = (this.newAtt) * 50 / 100 + (this.newAtt);
 
-      System.out.println(this.getName() + " 使用了【大劈】！造成了"//
+      System.out.println(this.getName() + " 使用了【火球】！造成了"//
           + damage + " 傷害！");
       target.deductHp(damage);
       this.deductMp(10);
@@ -58,12 +58,12 @@ public class Warrior3 extends Human implements Wskill3, Sword3, Levelup {
 
   @Override
   public void hit2(Human target) {
-    if (this.getMp() >= 20) {
-      int damage = (this.newAtt) * 150 / 100 + (this.newAtt);
-      System.out.println(this.getName() + " 使用了【旋風斬】！造成了"//
+    if (this.getMp() >= 50) {
+      int damage = (this.newAtt) * 300 / 100 + (this.newAtt);
+      System.out.println(this.getName() + " 使用了【地爆天星】！造成了"//
           + damage + " 傷害！");
       target.deductHp(damage);
-      this.deductMp(20);
+      this.deductMp(50);
     } else {
       this.hit1(target);
     }
@@ -72,27 +72,29 @@ public class Warrior3 extends Human implements Wskill3, Sword3, Levelup {
   @Override
   public void equip1() {
     this.addAtt(10);
-    this.addHp(30);
-    System.out.println(this.getName() + " 裝備了多蘭之劍!");
+    this.addMp(50);
+    System.out.println(this.getName() + " 裝備了大天使之仗!");
   }
 
   @Override
   public void equip2() {
-    this.addAtt(15);
-    System.out.println(this.getName() + " 裝備了海克斯之劍!");
+    this.addAtt(5);
+    this.addMp(80);
+    System.out.println(this.getName() + " 裝備了蘭德里之仗!");
   }
 
   @Override
   public void remove1() {
     this.addAtt(-10);
-    this.addHp(-30);
-    System.out.println(this.getName() + " 移除了多蘭之劍!");
+    this.addMp(-50);
+    System.out.println(this.getName() + " 移除了大天使之仗!");
   }
 
   @Override
   public void remove2() {
-    this.addAtt(-15);
-    System.out.println(this.getName() + " 移除了海克斯之劍!");
+    this.addAtt(-5);
+    this.addMp(-80);
+    System.out.println(this.getName() + " 移除了蘭德里之仗!");
   }
 
   public void action(Human target) { // for Warrior ONLY
@@ -125,33 +127,6 @@ public class Warrior3 extends Human implements Wskill3, Sword3, Levelup {
           target.attack(this); // 如果只是普通 Human 就用普通攻擊
         }
       }
-
-      System.out.println("戰況 -> " + this.getName() + ": " + this.getHp() + " HP | "
-          + target.getName() + ": " + target.getHp() + " HP");
-      System.out.println("---------------------------------------");
     }
-  }
-
-  public static void main(String[] args) {
-    Warrior3 h1 = new Warrior3("LEO");
-    Warrior3 h2 = new Warrior3("Peter");
-    Warrior3 h3 = new Warrior3("King");
-
-    h1.equip1();
-    h2.equip2();
-    h1.battle(h2);
-
-    if (h1.isAlive()) {
-      System.out.println("勝利者是: " + h1.getName());
-      h1.levelup();
-      h1.remove1();
-
-    } else {
-      System.out.println("勝利者是: " + h2.getName());
-      h2.levelup();
-      h2.remove2();
-
-    }
-
   }
 }
