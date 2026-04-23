@@ -16,8 +16,9 @@ public enum ErrorCode {
   BRN_ALREADY_EXISTS(40002, "此商業登記證 (BRN) 已被登記", HttpStatus.BAD_REQUEST),
   EMAIL_ALREADY_EXISTS(40003, "此電子郵件已被登記", HttpStatus.BAD_REQUEST),
   BRN_FORMAT_ERROR(40010, "BRN 格式不正確", HttpStatus.BAD_REQUEST),
-  MERCHANT_NOT_FOUND(40401, "找不到該商家資訊", HttpStatus.NOT_FOUND),
+  MERCHANT_NOT_FOUND(40404, "找不到該商家資訊", HttpStatus.NOT_FOUND),
   MERCHANT_NOT_VERIFIED(40301, "商家帳號尚未通過審核", HttpStatus.FORBIDDEN),
+  AUTH_FAILED(40401, "商家密碼或帳號錯誤", HttpStatus.UNAUTHORIZED),
 
   // --- 用戶相關 (410xx) ---
   USER_ALREADY_EXISTS(41001, "用戶帳號已存在", HttpStatus.BAD_REQUEST),

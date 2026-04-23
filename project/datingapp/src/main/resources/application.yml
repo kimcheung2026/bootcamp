@@ -1,5 +1,11 @@
 server:
   port: 8080
+  servlet:
+    session:
+      cookie:
+        max-age: -1
+        http-only: true
+        path: /
 
 spring:
   datasource:

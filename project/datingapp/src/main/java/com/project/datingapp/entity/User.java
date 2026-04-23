@@ -33,6 +33,10 @@ public class User {
         return Period.between(this.birthday, LocalDate.now()).getYears();
     }
 
+    @Column(nullable = false, length = 20)
+    @Comment("角色：ROLE_USER, ROLE_MERCHANT, ROLE_ADMIN") // 加入商家
+    private String role = "ROLE_USER";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("用戶ID，主鍵自增")

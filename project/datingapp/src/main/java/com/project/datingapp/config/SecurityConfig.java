@@ -1,50 +1,57 @@
 package com.project.datingapp.config;
 
+import com.project.datingapp.service.CustomUserDetailsService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+  @Autowired
+  private CustomUserDetailsService userDetailsService;
+
+  @Autowired
+  private CustomLoginSuccessHandler successHandler;
+
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
-        .csrf(csrf -> csrf.disable()) // 保持禁用以利表單 POST
+        .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(requests -> requests
-            // 1. 放行註冊相關、登入、以及靜態資源 (CSS, JS, 圖片)
-            .requestMatchers("/register", "/user/register", "/login", "/home", "/uploads/**").permitAll()
-            .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-
-            // 2. 角色權限控管
-            // 注意：hasRole("USER") 匹配的是 "ROLE_USER" 權限
-            .requestMatchers("/blindBoxOpen").hasRole("USER")
-            .requestMatchers("/interestClass").hasRole("MERCHANT")
-            .requestMatchers("/members").hasRole("ADMIN")
-
-            // 3. 其他所有路徑都需要登入
+            .requestMatchers(AuthPath.STATIC_RESOURCES).permitAll()
+            .requestMatchers(AuthPath.PUBLIC).permitAll()
+            .requestMatchers(AuthPath.FORGOT_PASSWORD).permitAll()
+            .requestMatchers(AuthPath.HOME).permitAll()
+            .requestMatchers(AuthPath.USER_ONLY).hasRole("USER")
+            .requestMatchers(AuthPath.COURSE_PREFIX + "/**").hasRole("MERCHANT")
+            .requestMatchers(AuthPath.ADMIN_ANY).hasRole("ADMIN")
             .anyRequest().authenticated())
         .formLogin(form -> form
-            .loginPage("/login")
-            .defaultSuccessUrl("/home", true) // 加上 true 強制登入後跳轉到首頁
+            .loginPage(AuthPath.LOGIN)
+            .loginProcessingUrl("/login")
+            .successHandler(successHandler)
+            .failureUrl("/login?error")
             .permitAll())
         .logout(logout -> logout
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/login?logout")
+            .logoutSuccessUrl(AuthPath.LOGIN + "?logout")
             .permitAll())
+
+        // ======================
+        // 🔥 保留你要的「自動失效」，但不會報錯！
+        // ======================
+        .sessionManagement(session -> session
+            .invalidSessionUrl(AuthPath.LOGIN) // 失效 → 跳登入
+            .sessionFixation().none() // 安全但不斷線
+        )
+
+        .userDetailsService(userDetailsService)
         .build();
   }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
-
-  // 注意：目前的 userDetailsService 是寫死在記憶體中，僅供測試
-  // 之後你應該實作 UserDetailsService 從資料庫讀取你註冊的用戶
 }

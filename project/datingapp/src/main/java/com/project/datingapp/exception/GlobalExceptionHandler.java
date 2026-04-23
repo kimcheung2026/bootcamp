@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
   public ResponseEntity<ErrorResponse> handleUserServiceException(UserServiceException e, HttpServletRequest request) {
     log.warn("用戶業務異常 [{}]: {}, Path: {}", e.getCode(), e.getMessage(), request.getRequestURI());
 
-    return ResponseEntity.status(e.getStatus())
+    return ResponseEntity.status(e.getStatus()) // 這裡括號先結束
         .body(new ErrorResponse(e.getCode(), e.getMessage()));
   }
 

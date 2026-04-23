@@ -25,32 +25,31 @@ public class CustomUserDetailsService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    // 1. 先從普通用戶資料表找
+    // 1. 先查一般使用者 / 管理員 (users 表)
     Optional<User> userOpt = userRepository.findByUsername(username);
     if (userOpt.isPresent()) {
       User user = userOpt.get();
-      return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
-          .password(user.getPassword())
-          .authorities("ROLE_USER") // 給予用戶權限
-          .build();
 
+      return org.springframework.security.core.userdetails.User
+          .withUsername(user.getUsername())
+          .password(user.getPassword())
+          .roles(user.getRole().replace("ROLE_", "")) // 關鍵修正
+          .build();
     }
 
-    // 2. 如果找不到，再從商家資料表找
+    // 2. 再查商家 (app_merchants 表)
     Optional<Merchant> merchantOpt = merchantRepository.findByUsername(username);
     if (merchantOpt.isPresent()) {
       Merchant merchant = merchantOpt.get();
 
-      // 商家需要檢查是否已審核
-      String role = merchant.isVerified() ? "ROLE_MERCHANT" : "ROLE_GUEST";
-
-      return org.springframework.security.core.userdetails.User.withUsername(merchant.getUsername())
+      return org.springframework.security.core.userdetails.User
+          .withUsername(merchant.getUsername())
           .password(merchant.getPassword())
-          .authorities(role) // 給予商家或遊客權限
+          .roles("MERCHANT") // 關鍵修正
           .build();
     }
 
-    // 3. 都找不到則拋出異常
-    throw new UsernameNotFoundException("找不到使用者或商家: " + username);
+    // 都找不到
+    throw new UsernameNotFoundException("找不到該使用者或商家: " + username);
   }
 }
