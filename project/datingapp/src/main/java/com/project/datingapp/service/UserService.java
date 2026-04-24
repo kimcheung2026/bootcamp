@@ -1,10 +1,8 @@
 package com.project.datingapp.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.UUID;
 
 import com.project.datingapp.dto.UserRegisterDTO;
 import com.project.datingapp.entity.User;
@@ -15,7 +13,6 @@ import com.project.datingapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserService {
@@ -45,17 +42,6 @@ public class UserService {
     user.setIntro(dto.getIntro());
 
     // 3. 處理頭像檔案
-    MultipartFile file = dto.getAvatarFile();
-    if (file != null && !file.isEmpty()) {
-      String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-      String uploadDir = System.getProperty("user.dir") + "/uploads/";
-      File dest = new File(uploadDir + fileName);
-      if (!dest.getParentFile().exists())
-        dest.getParentFile().mkdirs();
-
-      file.transferTo(dest);
-      user.setAvatar("/uploads/" + fileName);
-    }
 
     // 4. 存檔
     userRepository.save(user);

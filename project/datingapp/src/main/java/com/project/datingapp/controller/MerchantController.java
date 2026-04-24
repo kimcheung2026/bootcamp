@@ -32,6 +32,16 @@ public class MerchantController {
     }
 
     /**
+     * 商家後台首頁（發佈課程頁）
+     * 路徑：/merchant/main
+     */
+    @GetMapping(AuthPath.MAIN)
+    public String merchantMainPage() {
+        // 對應你剛才要的課程發佈頁：resources/templates/merchant/main.html
+        return "merchant/main";
+    }
+
+    /**
      * 處理商家註冊表單
      * 路徑：/merchant/register (POST)
      */

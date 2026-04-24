@@ -43,6 +43,10 @@ public class Merchant {
     @Comment("是否審核通過")
     private boolean isVerified; // 是否審核通過
 
+    @Column(name = "linked_user_id")
+    @Comment("Linked user account ID")
+    private Long linkedUserId;
+
     // 無參建構子（JPA 必備）
     public Merchant() {
     }
@@ -134,5 +138,13 @@ public class Merchant {
 
     public void setVerified(boolean verified) {
         isVerified = verified;
+    }
+
+    public Long getLinkedUserId() {
+        return linkedUserId;
+    }
+
+    public void setLinkedUserId(Long linkedUserId) {
+        this.linkedUserId = linkedUserId;
     }
 }

@@ -3,10 +3,13 @@ package com.project.datingapp.exception;
 import org.springframework.http.HttpStatus;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 @Getter
 public class UserServiceException extends RuntimeException {
     private final int code; // 新增 code 欄位
+
+    @NonNull
     private final HttpStatus status;
 
     // 1. 核心構造函數：對接 ErrorCode ENUM

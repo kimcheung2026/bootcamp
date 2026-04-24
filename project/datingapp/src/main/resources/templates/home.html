@@ -21,6 +21,7 @@
         <div class="menu">
             <span sec:authorize="isAuthenticated()">
                 歡迎, <span sec:authentication="name">User</span>
+                <a href="/role/switch">切換角色</a>
                 <a href="/logout">登出</a>
             </span>
             <span sec:authorize="isAnonymous()">
@@ -42,12 +43,7 @@
                 <a href="/blindBoxOpen" class="btn">立即開啟</a>
             </div>
 
-            <!-- 只有商家看得到 ROLE_MERCHANT -->
-            <div class="card" sec:authorize="hasRole('MERCHANT')">
-                <h3>興趣班管理</h3>
-                <p>發佈並管理您的興趣班課程。</p>
-                <a href="/course" class="btn" style="background: #007bff;">管理課程</a>
-            </div>
+
 
             <!-- 只有管理員看得到 ROLE_ADMIN -->
             <div class="card" sec:authorize="hasRole('ADMIN')">
@@ -61,6 +57,13 @@
                 <h3>個人記錄</h3>
                 <p>查看您的活動報名狀態。</p>
                 <a href="/classEnrollment" class="btn" style="background: #6c757d;">查看紀錄</a>
+            </div>
+
+            <!-- 角色切換功能 -->
+            <div class="card" sec:authorize="isAuthenticated()">
+                <h3>切換角色</h3>
+                <p>在用戶和商家角色之間切換。</p>
+                <a href="/role/switch" class="btn" style="background: #17a2b8;">切換角色</a>
             </div>
         </div>
     </div>

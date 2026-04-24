@@ -28,6 +28,9 @@ public class SecurityConfig {
             .requestMatchers(AuthPath.PUBLIC).permitAll()
             .requestMatchers(AuthPath.FORGOT_PASSWORD).permitAll()
             .requestMatchers(AuthPath.HOME).permitAll()
+            .requestMatchers(AuthPath.ROLE_SWITCH).authenticated()  // Role switch page
+            .requestMatchers(AuthPath.ROLE_CURRENT).authenticated() // Get current role API
+            .requestMatchers(AuthPath.ROLE_DASHBOARD).authenticated() // Dashboard redirect
             .requestMatchers(AuthPath.USER_ONLY).hasRole("USER")
             .requestMatchers(AuthPath.COURSE_PREFIX + "/**").hasRole("MERCHANT")
             .requestMatchers(AuthPath.ADMIN_ANY).hasRole("ADMIN")

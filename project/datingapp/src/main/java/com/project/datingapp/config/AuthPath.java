@@ -15,6 +15,7 @@ public class AuthPath {
         public static final String LOGIN = "/login";
         public static final String REGISTER = "/register";
         public static final String HOME = "/home";
+        public static final String MAIN = "/main";
         public static final String BLIND_BOX = "/blindBoxOpen";
         public static final String MEMBERS_LIST = "/list";
         public static final String MERCHANT_VERIFY = "/merchants/verify";
@@ -48,7 +49,11 @@ public class AuthPath {
         public static final String USER_REGISTER = "/user/register";
 
         // 商家專用
+        public static final String MERCHANT_MAIN = MERCHANT_PREFIX + "/main";
         public static final String MERCHANT_PUBLISH = "/publish";
+
+        // 管理者後台
+        public static final String ADMIN_DASHBOARD = ADMIN_PREFIX + "/dashboard"; // /admin/dashboard
 
         // ===================== 課程模組 =====================
         public static final String COURSE_PUBLISH = "/publish";
@@ -67,4 +72,9 @@ public class AuthPath {
         // 密碼重設相關
         public static final String FORGOT_PASSWORD = "/forgot-password";
         public static final String REDIRECT_FORGOT_PASSWORD = "redirect:" + FORGOT_PASSWORD;
+
+        // 角色切換相關
+        public static final String ROLE_SWITCH = "/role/switch";
+        public static final String ROLE_CURRENT = "/role/current";
+        public static final String ROLE_DASHBOARD = "/role/dashboard";
 }

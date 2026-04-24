@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -23,14 +25,17 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
+    String username = authentication.getName();
+
+    log.info("User [{}] login successful, Roles: {}", username, roles);
     if (roles.contains("ROLE_ADMIN")) {
-      // 管理員 → 首頁
-      response.sendRedirect(AuthPath.HOME);
+      log.info("Admin account, redirect to admin dashboard");
+      response.sendRedirect(AuthPath.ADMIN_DASHBOARD);
     } else if (roles.contains("ROLE_MERCHANT")) {
-      // 商家 → 首頁
-      response.sendRedirect(AuthPath.HOME);
+      log.info("Merchant account, redirect to merchant page");
+      response.sendRedirect(AuthPath.MERCHANT_MAIN);
     } else {
-      // 一般使用者 → 首頁
+      log.info("User, redirect to home page");
       response.sendRedirect(AuthPath.HOME);
     }
   }

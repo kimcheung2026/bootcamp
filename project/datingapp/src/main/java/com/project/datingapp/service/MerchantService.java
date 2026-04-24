@@ -10,6 +10,7 @@ import com.project.datingapp.exception.MerchantException;
 import com.project.datingapp.repository.MerchantRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,7 +73,8 @@ public class MerchantService {
 
   // ===================== 審核商家 =====================
   @Transactional
-  public void verifyMerchant(Long id) {
+  public void verifyMerchant(@NonNull Long id) {
+
     Merchant merchant = merchantRepository.findById(id)
         .orElseThrow(() -> new MerchantException(ErrorCode.MERCHANT_NOT_FOUND));
 

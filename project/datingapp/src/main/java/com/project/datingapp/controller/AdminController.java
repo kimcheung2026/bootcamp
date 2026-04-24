@@ -35,7 +35,7 @@ public class AdminController {
    * 路徑：/admin/merchants/verify/{id}
    */
   @PostMapping(AuthPath.MERCHANT_VERIFY + "/{id}")
-  public String verifyMerchant(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+  public String verifyMerchant(@PathVariable("id") long id, RedirectAttributes redirectAttributes) {
     try {
       merchantService.verifyMerchant(id);
       redirectAttributes.addFlashAttribute("successMessage", "商家審核已通過");

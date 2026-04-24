@@ -20,6 +20,7 @@ public class CourseServiceImpl implements CourseService {
 
   @Override
   @Transactional
+  @SuppressWarnings("null")
   public void saveCourseAndSchedule(Course course, CourseSchedule schedule) {
     Course saved = courseRepository.save(course);
     schedule.setCourse(saved);

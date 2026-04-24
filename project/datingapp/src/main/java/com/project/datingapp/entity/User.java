@@ -3,11 +3,13 @@ package com.project.datingapp.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.List;
 
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 public class User {
 
-    @Transient // 告訴 Hibernate 這裡不需要對應資料庫欄位
+    @Transient
     public int getAge() {
         if (this.birthday == null) {
             return 0;
@@ -33,69 +35,81 @@ public class User {
         return Period.between(this.birthday, LocalDate.now()).getYears();
     }
 
-    @Column(nullable = false, length = 20)
-    @Comment("角色：ROLE_USER, ROLE_MERCHANT, ROLE_ADMIN") // 加入商家
-    private String role = "ROLE_USER";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Comment("用戶ID，主鍵自增")
+    @Comment("User ID - Primary Key")
     private Long id;
 
     @Column(unique = true, nullable = false, length = 50)
-    @Comment("登錄賬號，唯一不可重重複")
+    @Comment("Login username (unique)")
     private String username;
 
     @Column(nullable = false, length = 100)
-    @Comment("登錄密碼（加密儲存）")
+    @Comment("Encrypted password")
     private String password;
 
     @Column(length = 30)
-    @Comment("用戶暱稱")
+    @Comment("Nickname")
     private String nickname;
 
-    @Column(columnDefinition = "TEXT")
-    @Comment("用戶頭像URL")
-    private String avatar;
-
     @Column(length = 10)
-    @Comment("性别：男/女/保密")
+    @Comment("Gender: MALE, FEMALE, OTHER")
     private String gender;
 
-    // ==================== 这里改成生日（年月日） ====================
-    @Comment("生日：yyyy-MM-dd")
+    @Comment("Birthday yyyy-MM-dd")
     private LocalDate birthday;
 
     @Column(unique = true, length = 50)
-    @Comment("郵箱，唯一")
+    @Comment("Email")
     private String email;
 
     @Column(unique = true, length = 20)
-    @Comment("手機號碼，唯一")
+    @Comment("Phone")
     private String phone;
 
     @Column(columnDefinition = "TEXT")
-    @Comment("個人簡介")
+    @Comment("Introduction")
     private String intro;
+
+    @Column(nullable = false, length = 20)
+    @Comment("Role: ROLE_USER, ROLE_MERCHANT, ROLE_ADMIN")
+    private String role = "ROLE_USER";
+
+    @Column(name = "linked_merchant_id")
+    @Comment("Linked merchant account ID if user has merchant role")
+    private Long linkedMerchantId;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    @Comment("創建時間，自动生成")
+    @Comment("Created time")
     private LocalDateTime createTime;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    // ======================
+    // 【配對系統新增欄位】
+    // ======================
 
-    public String getEmail() { // String -> return Type
-        return this.email;
-    }
-    // 设置生日
-    // user.setBirthday(LocalDate.of(2000, 5, 20));
+    @Column(length = 20)
+    @Comment("Marital status: SINGLE, others")
+    private String maritalStatus;
 
-    // 获取生日
-    // LocalDate birthday = user.getBirthday();
+    @Column(length = 50)
+    @Comment("City location for matching")
+    private String city;
 
-    // 自动计算年龄（Java自带）
-    // int age = Period.between(birthday, LocalDate.now()).getYears();
+    @Column(length = 10)
+    @Comment("MBTI personality type")
+    private String mbti;
+
+    @ElementCollection
+    @Comment("User interest tags ")
+    private List<String> tags;
+
+    @Column(nullable = false)
+    @Comment("Enable matching status")
+    private boolean matchingEnabled = true;
+
+    @Column(nullable = false)
+    @Comment("VIP user (unlock more matching conditions)")
+    private boolean isVip = false;
+
 }
