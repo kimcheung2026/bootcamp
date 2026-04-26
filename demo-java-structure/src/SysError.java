@@ -4,9 +4,18 @@ public enum SysError {
   private int code;
   private String message;
 
-  Private SysError(int code, String messge) {
+  private SysError(int code, String message) {
     this.code = code;
     this.message = message;
   }
-
+  
+  public int getCode() {
+    return this.code;
+  }
+  public String getMessage() {
+    return this.message;
+  }
+  public static void main(String[] args) {
+    throw BusinessException.of(SysError.TIMEOUT);
+  }
 }

@@ -67,10 +67,6 @@ public class User {
     @Comment("Phone")
     private String phone;
 
-    @Column(columnDefinition = "TEXT")
-    @Comment("Introduction")
-    private String intro;
-
     @Column(nullable = false, length = 20)
     @Comment("Role: ROLE_USER, ROLE_MERCHANT, ROLE_ADMIN")
     private String role = "ROLE_USER";
