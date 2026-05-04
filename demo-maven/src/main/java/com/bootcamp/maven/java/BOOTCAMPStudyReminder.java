@@ -1,6 +1,7 @@
 package com.bootcamp.maven.java;
 
 public class BOOTCAMPStudyReminder {
+
   // ! JDBC WORK flow
   // ! 1.create a Connection
   // Connection conn = DriverManager.getConnection(...);
@@ -14,7 +15,8 @@ public class BOOTCAMPStudyReminder {
   // ! 5. Close the Connection
   // Always close resources(ResultSet, Statement, Connection) to avoid
   // memory leaks
-
+  // Close method 1 TRY -- Catch
+  // close method 2 AutoCloseable
   public static void close(AutoCloseable... resources) {
     for (AutoCloseable res : resources) {
       if (res != null) {
